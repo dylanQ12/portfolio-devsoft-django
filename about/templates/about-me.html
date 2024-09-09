@@ -1,0 +1,125 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block content %}
+<h5 class="mb-4">
+  <a href="{% url 'home' %}" style="color: inherit; text-decoration: none;"> <i class="fas fa-home"></i>
+    Inicio / Sobre mí
+  </a>
+</h5>
+
+<div class="project-details py-3 text-center">
+  <div class="container">
+    <h2 class="mb-4 text-white">Sobre Mí</h2>
+
+    <div class="project-image-wrapper mb-4 mx-auto" style="max-width: 300px;">
+      <img src="{% static 'img/profile.jpeg' %}" alt="img-profile" class="img-fluid rounded-circle shadow-lg"
+        style="width: 100%; height: auto; object-fit: cover;">
+    </div>
+
+    <h2 class="mb-3 text-white">Dylan Quintanilla</h2>
+
+    <div class="project-content text-white mt-4 text-center mb-5">
+      <p class="lead">
+        Como desarrollador de Software especializado en Backend,
+        me apasiona convertir ideas complejas en soluciones digitales inteligentes,
+        escalables y de alto rendimiento. Mi misión es desbloquear todo el potencial
+        de tu proyecto con la creación de sistemas sólidos y APIs robustas, siempre con un enfoque
+        personalizado que responde a las necesidades únicas de cada cliente.
+        Con 4 años de experiencia en el desarrollo de software,
+        he perfeccionado mi habilidad para transformar ideas complejas en soluciones digitales eficientes y
+        personalizadas.
+        Mi enfoque principal está en el Backend, donde me dedico a crear sistemas robustos
+        y escalables que no solo resuelven problemas actuales, sino que también anticipan las necesidades futuras.
+      </p>
+    </div>
+
+    <br><h2 class="mb-4 text-white">Mis Tecnologías</h2>
+
+    <!-- Tecnologías principales -->
+    <div class="row justify-content-center">
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/html-5.png' %}" alt="html5-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/css-100.png' %}" alt="css-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/js-100.png' %}" alt="js-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/php-100.png' %}" alt="php-icon">
+      </div>
+    </div>
+
+    <!-- Tecnologías adicionales -->
+    <div class="row justify-content-center mb-1">
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/python-100.png' %}" alt="python-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/java-100.png' %}" alt="java-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/django-100.png' %}" alt="django-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/laravel-100.png' %}" alt="laravel-icon">
+      </div>
+    </div>
+
+    <!-- Bases de Datos -->
+    <h2 class="mb-5 text-white">Bases de Datos</h2>
+    <div class="row justify-content-center mb-4">
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/postgresql-100.png' %}" alt="postgresql-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/mysql-100.png' %}" alt="mysql-icon">
+      </div>
+      <div class="col-4 col-md-2">
+        <img class="img-fluid mb-3" src="{% static 'img/icons/mongo-db-100.png' %}" alt="mongodb-icon">
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><h2 class="text-center mb-2">Habilidades y Experiencia</h2>
+<!-- Skills Section -->
+<section class="portfolio py-3">
+  <div class="container">
+    <div class="row">
+      {% for skill in skills %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+        <div class="card bg-black card-body h-100 shadow-lg">
+          <!-- Imagen del skill -->
+          <div class="project-img-wrapper mb-3" style="width: 100%; height: 200px; overflow: hidden;">
+            <img class="img-fluid" src="{{ skill.image.url }}" alt="{{ skill.name }}"
+              style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <!-- Nombre y descripción -->
+          <h4 class="mb-3 text-white">{{ skill.name | upper }}</h4>
+          <p class="text-muted">
+            {{ skill.description |striptags|truncatechars:100 }}
+          </p>
+          {% if skill.experience == 1 %}
+             <p class="text-muted"><strong>Experiencia: </strong>{{ skill.experience }} año</p>
+          {% elif skill.experience > 1 %}
+             <p class="text-muted"><strong>Experiencia: </strong>{{ skill.experience }} años</p>
+          {% endif %}
+
+          <!-- Botón de leer más -->
+          <a class="btn btn-outline-primary btn-lg rounded-0 mt-3" href="{% url 'skill-detail' skill.id %}">
+            Leer más
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg" href="{% url 'skills' %}">Ver más</a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

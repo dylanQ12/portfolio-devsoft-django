@@ -1,0 +1,115 @@
+/* Body styling */
+body {
+  background: linear-gradient(150deg, #090909 100%, #121212 100%);
+  font-family: 'Poppins', sans-serif;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bg-black {
+  background: #000000;
+}
+
+/* Card project hover effect */
+.card-project {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-project:hover {
+  border-color: #00d1ff;
+  cursor: pointer;
+  transform: scale(1.02);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Global link styling */
+a {
+  color: #00d1ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #00b8e6;
+}
+
+/* Improved form input styling */
+input, textarea, select {
+  background-color: #222;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  background-color: #333;
+  border-color: #00d1ff;
+}
+
+/* Button styling */
+button {
+  background-color: #00d1ff;
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #00b8e6;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 209, 255, 0.5);
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00d1ff;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  .card-project {
+    margin-bottom: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+  }
+}

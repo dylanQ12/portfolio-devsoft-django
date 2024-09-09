@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block css_style %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock css_style %}
+
+{% block content %}
+
+<!-- Título y Navegación -->
+<h5 class="mb-5">
+  <a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">
+     <i class="fas fa-home"></i> Inicio
+  </a> / {{ title }}
+</h5>
+
+<!-- Mostrar cantidad de publicaciones -->
+{% if total_posts == 0 %}
+   <h5>No hay Publicaciones Disponibles</h5>
+{% elif total_posts == 1 %}
+   <h4 class="mb-1">{{ total_posts }} Publicación Disponible</h4>
+{% else %}
+   <h4 class="mb-1">{{ total_posts }} Publicaciones Disponibles</h4>
+{% endif %}
+
+<!-- Sección de Publicaciones del Blog -->
+<section class="blog py-3">
+  <div class="container">
+    <div class="row">
+      {% for post in posts %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card bg-black card-body h-100 shadow-lg">
+          <!-- Imagen del post -->
+          <div class="blog-img-wrapper mb-4" style="width: 100%; height: 200px; overflow: hidden;">
+            <img 
+              class="img-fluid" 
+              src="{{ post.image.url }}" 
+              alt="{{ post.title }}" 
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          </div>
+
+          <!-- Título y descripción -->
+          <h4 class="mb-3 text-white">{{ post.title | upper }}</h4>
+          <p class="text-muted">{{ post.description|striptags|truncatechars:100 }}</p>
+          <p class="text-muted">
+            <strong>Creado:</strong> {{ post.date|date:"d-m-Y" }}
+          </p>
+          
+          <!-- Botón de leer más -->
+          <a class="btn btn-outline-primary btn-lg rounded-0 mt-3" href="{% url 'blog:post_detail' post.id %}">
+            Leer más
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

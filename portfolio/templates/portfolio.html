@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block css_style %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock css_style %}
+
+{% block content %}
+<!-- Título y Navegación -->
+<h5 class="mb-5">
+    <a href="{% url 'home' %}" style="color: inherit; text-decoration: none;"> 
+       <i class="fas fa-home"></i> Inicio
+    </a> / {{ title }}
+</h5>
+
+<!-- Mostrar cantidad de proyectos -->
+{% if total_projects == 0 %}
+   <h4>No hay Proyectos Disponibles</h4>
+{% elif total_projects == 1 %}
+    <h4 class="mb-1">{{ total_projects }} Proyecto Creado</h4>
+{% else %}
+    <h4 class="mb-1">{{ total_projects }} Proyectos Creados</h4>
+{% endif %}
+
+<!-- Sección de Proyectos del Portafolio -->
+<section class="portfolio py-3">
+  <div class="container">
+    <div class="row">
+      {% for project in projects %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card bg-black card-body h-100 shadow-lg">
+          <!-- Imagen del proyecto -->
+          <div class="project-img-wrapper mb-3" style="width: 100%; height: 200px; overflow: hidden;">
+            <img 
+              class="img-fluid" 
+              src="{{ project.image.url }}" 
+              alt="{{ project.title }}" 
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          </div>
+
+          <!-- Título y descripción -->
+          <h4 class="mb-3 text-white">{{ project.title | upper }}</h4>
+          <p class="text-muted">{{ project.description|striptags|truncatechars:100 }}</p>
+          <p class="text-muted">
+            <strong>Creado:</strong> {{ project.date|date:"d-m-Y" }}
+          </p>
+
+          <!-- Botón de leer más -->
+          <a class="btn btn-outline-primary btn-lg rounded-0 mt-3" href="{% url 'project-detail' project.id %}">
+            Leer más
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

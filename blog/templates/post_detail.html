@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block content %}
+
+<h5 class="mb-4">
+  <a href="{% url 'home' %}" style="color: inherit; text-decoration: none;"> <i class="fas fa-home"></i>
+     Inicio
+  </a> / {{ post.title }}
+</h5>
+
+<div class="post-details py-3 text-center">
+  <div class="container">
+    <h2 class="mb-4 text-white">{{ post.title | upper }}</h2>
+    
+    <!-- Imagen del post -->
+    <div class="post-image-wrapper mb-4 mx-auto" style="max-width: 100%; max-width: 800px;">
+      <img 
+        src="{{ post.image.url }}" 
+        alt="{{ post.title }}" 
+        class="img-fluid rounded shadow-lg" 
+        style="width: 100%; height: auto; object-fit: cover;"
+      >
+    </div>
+    
+    <!-- Fecha de creación -->
+    <h4 class="my-2 h5 text-muted mb-3">
+      <strong class="text-primary">Creado:</strong> {{ post.date|date:"d-m-Y" }}
+    </h4>
+
+    <!-- Contenido del post -->
+    <div class="post-content text-white mt-4 text-start">
+      <p class="lead mb-5">
+        {{ post.description }}
+      </p>
+    </div>
+
+    <!-- Links adicionales (YouTube y Google) -->
+    {% if post.link_youtube or post.link_google %}
+    <div class="d-flex justify-content-center align-items-center">
+      {% if post.link_youtube %}
+      <a class="btn btn-outline-danger me-3" href="{{ post.link_youtube }}" target="_blank" rel="noreferrer">
+        <i class="fab fa-youtube"></i> Ver en YouTube
+      </a>
+      {% endif %}
+      
+      {% if post.link_google %}
+      <a class="btn btn-outline-secondary" href="{{ post.link_google }}" target="_blank" rel="noreferrer">
+        <i class="fab fa-google"></i> Ver en Google
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

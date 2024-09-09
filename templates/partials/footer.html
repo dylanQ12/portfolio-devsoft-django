@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block footer %}
+<!-- Footer -->
+<footer class="bg-black text-white py-5">
+  <div class="container">
+    <div class="row">
+      <!-- About Me Section -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <h5 class="text-white mb-3">Sobre mí</h5>
+        <p class="text-muted">
+          Soy Dylan Quintanilla, un desarrollador de software con más de 4 años de experiencia en el desarrollo de aplicaciones web y soluciones backend escalables. Me especializo en transformar ideas complejas en soluciones digitales eficientes y personalizadas.
+        </p>
+        <a class="btn btn-primary btn-lg rounded-pill px-4 py-2" href="{% url 'about' %}" style="font-size: 0.9rem;">
+          Leer Más
+        </a>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h5 class="text-white mb-3">Portafolio</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'home' %}" class="text-muted">Inicio</a></li>
+          <li class="mb-2"><a href="{% url 'about' %}" class="text-muted">Sobre mí</a></li>
+          <li class="mb-2"><a href="{% url 'portfolio' %}" class="text-muted">Portafolio</a></li>
+          <li class="mb-2"><a href="{% url 'skills' %}" class="text-muted">Habilidades</a></li>
+          <li class="mb-2"><a href="{% url 'blog:posts' %}" class="text-muted">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Latest Projects Section -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="text-white mb-3">Últimos Proyectos</h5>
+        <ul class="list-unstyled">
+          {% for project in latest_projects %}
+            <li class="mb-2">
+              <a href="{% url 'project-detail' project.id %}" class="text-muted">{{ project.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Social Media Section -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="text-white mb-3">Conéctate</h5>
+        <div class="d-flex">
+          <a href="https://github.com/dylanQ12" class="text-muted me-4" target="_blank" rel="noreferrer">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/dylan-arturo-quintanilla-mosquera-692624301" class="text-muted me-4" target="_blank" rel="noreferrer">
+            <i class="fab fa-linkedin fa-2x"></i>
+          </a>
+          <!--<a href="#" class="text-muted me-4">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a> -->
+          <!--<a href="#" class="text-muted">
+            <i class="fab fa-facebook fa-2x"></i>
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal line and copyright -->
+    <hr class="border-secondary my-4">
+    <div class="text-center">
+      <p class="text-muted mb-0">&copy; {{ current_year }} Dylan Quintanilla | Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>
+{% endblock footer %}

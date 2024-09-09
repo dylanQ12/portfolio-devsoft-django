@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block css_style %}
+  <link rel="stylesheet" href="{% static 'css/hero/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock css_style %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero d-flex align-items-center text-white mb-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+        <img src="{% static 'img/profile.jpeg' %}" class="profile-img img-fluid rounded-circle shadow-lg" alt="Dylan Quintanilla" />
+      </div>
+      <div class="col-md-8">
+        <h2 class="display-4 mb-3 fw-bold"><strong>Dylan Quintanilla</strong></h2>
+        <h4 class="mb-3">Experto en Desarrollo de Software</h4>
+        <p class="lead mb-4">
+          Como desarrollador de Software especializado en Backend, 
+          me apasiona convertir ideas complejas en soluciones digitales inteligentes, 
+          escalables y de alto rendimiento. Mi misión es desbloquear todo el potencial 
+          de tu proyecto con la creación de sistemas sólidos y APIs robustas, siempre con un enfoque 
+          personalizado que responde a las necesidades únicas de cada cliente.
+        </p>
+        <a class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg" href="{% url 'about' %}">Leer Más</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<h2 class="text-center mb-2">Mis Proyectos</h2>
+
+<!-- Sección de Proyectos del Portafolio -->
+<section class="portfolio py-3 mb-5">
+  <div class="container">
+    <div class="row">
+      {% for project in projects %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+        <div class="card bg-black card-body h-100 shadow-lg">
+          <!-- Imagen del proyecto -->
+          <div class="project-img-wrapper mb-3" style="width: 100%; height: 200px; overflow: hidden;">
+            <img 
+              class="img-fluid" 
+              src="{{ project.image.url }}" 
+              alt="{{ project.title }}" 
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          </div>
+
+          <!-- Título y descripción -->
+          <h4 class="mb-3 text-white">{{ project.title | upper }}</h4>
+          <p class="text-muted">{{ project.description|striptags|truncatechars:100 }}</p>
+          <p class="text-muted">
+            <strong>Creado:</strong> {{ project.date|date:"d-m-Y" }}
+          </p>
+
+          <!-- Botón de leer más -->
+          <a class="btn btn-outline-primary btn-lg rounded-0 mt-3" href="{% url 'project-detail' project.id %}">
+            Leer más
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg" href="{% url 'portfolio' %}">Ver más</a>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Publicaciones del Blog -->
+<h2 class="text-center mb-1">Mi Blog</h2>
+<section class="blog py-3">
+  <div class="container">
+    <div class="row">
+      {% for post in posts %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+        <div class="card bg-black card-body h-100 shadow-lg">
+          <!-- Imagen del post -->
+          <div class="blog-img-wrapper mb-3" style="width: 100%; height: 200px; overflow: hidden;">
+            <img 
+              class="img-fluid" 
+              src="{{ post.image.url }}" 
+              alt="{{ post.title }}" 
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          </div>
+
+          <!-- Título y descripción -->
+          <h4 class="mb-3 text-white">{{ post.title | upper }}</h4>
+          <p class="text-muted">{{ post.description|striptags|truncatechars:100 }}</p>
+          <p class="text-muted">
+            <strong>Creado:</strong> {{ post.date|date:"d-m-Y" }}
+          </p>
+          
+          <!-- Botón de leer más -->
+          <a class="btn btn-outline-primary btn-lg rounded-0 mt-3" href="{% url 'blog:post_detail' post.id %}">
+            Leer Publicación
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg" href="{% url 'blog:posts' %}">Ver más</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

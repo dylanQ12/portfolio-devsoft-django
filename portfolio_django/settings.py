@@ -133,11 +133,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Settings Jassmin.
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Portafolio Admin",
+    "site_title": "Portfolio Admin",
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Portafolio SoftDev",
+    "site_header": "Portfolio SoftDev",
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Portafolio SoftDev",
+    "site_brand": "Portfolio SoftDev",
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": None, #"books/img/logo.png",
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
@@ -149,9 +149,9 @@ JAZZMIN_SETTINGS = {
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
     "site_icon": None,
     # Welcome text on the login screen
-    "welcome_sign": "Bienvenido a DevSoft Portfolio",
+    "welcome_sign": "Bienvenido a SoftDev Portfolio",
     # Copyright on the footer
-    "copyright": "Portfolio DevSoft",
+    "copyright": "Portfolio SoftDev",
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
     "search_model": ["auth.User", "auth.Group"],
@@ -163,10 +163,10 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
         # Url that gets reversed (Permissions can be added)
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Inicio", "url": "admin:index", "permissions": ["auth.view_user"]},
         # external url that opens in a new window (Permissions can be added)
         {
-            "name": "Support",
+            "name": "Soporte",
             "url": "https://github.com/farridav/django-jazzmin/issues",
             "new_window": True,
         },

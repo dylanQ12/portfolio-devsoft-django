@@ -10,7 +10,6 @@ class ProjectAdmin(admin.ModelAdmin):
         "date",
     )
     list_filter = (
-        "title",
         "date",
     )
     search_fields = ("id", "title", "description")
